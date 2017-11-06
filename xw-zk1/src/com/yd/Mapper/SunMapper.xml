@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yd.Mapper.SunMapper">
+    <select id="findAll" resultType="com.yd.pojo.Sun" >
+      select * from news 
+      <if test="titile!=null and titile!=''">
+         where titile like concat('%',#{titile},'%')
+         or roo like concat('%',#{titile},'%')
+      </if>
+    </select>
+    <insert id="add">
+       insert into news (titile,roo,data)values(#{titile},#{roo},#{data});
+    </insert>
+    <update id="update">
+      update news set titile=#{titile},roo=#{roo},data=#{data} where id=#{id}
+    </update>
+    <delete id="del">
+      delete from news where id=#{id};
+    </delete>
+    <select id="toedit" resultType="com.yd.pojo.Sun">
+     select * from news where id=#{id};
+    </select>
+</mapper>
